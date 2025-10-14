@@ -1,25 +1,32 @@
 import Header from "./components/Header";
 import Board from "./components/Board";
+import { useGame } from "./hooks/useGame";
 
 export default function App() {
-  // placeholder state for now (we’ll wire real engine next step)
-  const size = 4;
+  const { state, restart, setSize } = useGame(4);
 
   return (
     <main className="max-w-xl mx-auto p-4 min-h-screen bg-[#faf8ef] text-slate-800">
       <Header
-        score={0}
-        status="playing"
-        size={size}
-        onRestart={() => {}}
-        onSize={() => {}}
+        score={state.score}
+        status={state.status}
+        size={state.size}
+        onRestart={() => restart()}
+        onSize={setSize}
       />
 
-      <Board size={size} />
+      {/* Board expects a flat array; convert 2D -> 1D for display */}
+      <Board size={state.size} board={state.board.flat()} />
 
       <p className="mt-3 text-sm text-slate-500">
-        Grid placeholder. Next: implement the pure 2048 engine.
+        Use Arrow keys or WASD. Reach 2048!
       </p>
+
+      {state.status !== "playing" && (
+        <div className="mt-3 font-semibold">
+          {state.status === "won" ? "🎉 You won!" : "👾 No more moves."}
+        </div>
+      )}
     </main>
   );
 }
