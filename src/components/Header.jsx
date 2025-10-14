@@ -7,7 +7,8 @@ export default function Header({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3 mb-4">
-      <h1 className="text-3xl font-extrabold">2048</h1>
+      <h1 className="text-3xl font-extrabold tracking-wide">2048</h1>
+
 
       <div className="ml-auto flex items-center gap-2">
         <div className="rounded-lg bg-amber-200 text-amber-900 px-3 py-1 font-semibold">
