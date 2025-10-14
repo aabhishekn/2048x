@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Board from "./components/Board";
+import StatusOverlay from "./components/StatusOverlay";
 import { useGame } from "./hooks/useGame";
 
 export default function App() {
@@ -12,21 +13,27 @@ export default function App() {
         status={state.status}
         size={state.size}
         onRestart={() => restart()}
-        onSize={setSize}
+        onSize={(n) => setSize(n)}
       />
 
-      {/* Board expects a flat array; convert 2D -> 1D for display */}
-      <Board size={state.size} board={state.board.flat()} />
+      {/* Board container becomes relative to host the overlay */}
+      <div className="relative">
+        <Board size={state.size} board={state.board.flat()} />
+        <StatusOverlay status={state.status} onRestart={() => restart()} />
+      </div>
+
+      {/* Accessible live region for status updates */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {state.status === "won"
+          ? "You won. New game available."
+          : state.status === "lost"
+          ? "No more moves. New game available."
+          : "Game in progress."}
+      </div>
 
       <p className="mt-3 text-sm text-slate-500">
-        Use Arrow keys or WASD. Reach 2048!
+        Use Arrow keys or WASD. Change size to start a fresh board.
       </p>
-
-      {state.status !== "playing" && (
-        <div className="mt-3 font-semibold">
-          {state.status === "won" ? "🎉 You won!" : "👾 No more moves."}
-        </div>
-      )}
     </main>
   );
 }
