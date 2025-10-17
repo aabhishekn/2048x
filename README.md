@@ -23,8 +23,6 @@ A sleek, modern implementation of the classic 2048 puzzle game built with React 
 - [Component Architecture](#-component-architecture)
 - [Available Scripts](#-available-scripts)
 - [Deployment](#-deployment)
-- [Contributing](#-contributing)
-
 ---
 
 ## 🧠 About the Game
