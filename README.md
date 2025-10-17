@@ -22,8 +22,6 @@ A sleek, modern implementation of the classic 2048 puzzle game built with React 
 - [Technical Highlights](#-technical-highlights)
 - [Available Scripts](#-available-scripts)
 - [Deployment](#-deployment)
-- [Contributing](#-contributing)
-
 ---
 
 ## 🧠 About the Game
@@ -339,57 +337,6 @@ npm run build
 ### Environment Variables
 
 No environment variables are required for basic deployment. The app runs entirely in the browser with no backend dependencies.
-
----
-
-## 🎨 Customization
-
-### Changing Board Size Range
-
-Edit `Header.jsx` to add more size options:
-
-```javascript
-{
-  [4, 5, 6, 7, 8].map((n) => (
-    <option key={n} value={n}>
-      {n}×{n}
-    </option>
-  ));
-}
-```
-
-### Modifying Tile Colors
-
-Edit the `tileClass()` function in `Board.jsx`:
-
-```javascript
-const tileClass = (v) => {
-  if (v === 2) return "bg-purple-200 text-purple-900";
-  // Add your custom colors...
-};
-```
-
-### Adjusting Win Condition
-
-Edit `game.js` to change the target tile:
-
-```javascript
-const status = nb.flat().includes(4096)
-  ? "won" // Win at 4096 instead
-  : canMove(nb)
-  ? "playing"
-  : "lost";
-```
-
----
-
-### Code Style Guidelines
-
-- Use functional components and hooks
-- Follow ESLint rules
-- Keep functions small and focused
-- Write descriptive variable names
-- Add JSDoc comments for complex functions
 
 ---
 
