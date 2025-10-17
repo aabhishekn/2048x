@@ -19,10 +19,11 @@ A sleek, modern implementation of the classic 2048 puzzle game built with React 
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
 - [How to Play](#-how-to-play)
-- [Game Logic](#-game-logic)
-- [Component Architecture](#-component-architecture)
+- [Technical Highlights](#-technical-highlights)
 - [Available Scripts](#-available-scripts)
 - [Deployment](#-deployment)
+- [Contributing](#-contributing)
+
 ---
 
 ## 🧠 About the Game
@@ -228,224 +229,18 @@ The application will automatically reload when you make changes to the source fi
 
 ---
 
-## 🎮 Game Logic
+## 🎮 Technical Highlights
 
-The game engine (`src/lib/game.js`) is built with **pure, immutable functions** that make the logic predictable, testable, and easy to reason about.
+### Core Algorithm
 
-### Core Functions
+The game logic uses a smart approach: all four directions (up, down, left, right) are normalized to a single "move left" operation using matrix transformations (transpose and reverse). This keeps the code DRY and maintainable.
 
-#### `emptyBoard(n)`
+### Architecture
 
-Creates an n×n array filled with zeros representing empty cells.
-
-```javascript
-emptyBoard(4); // Returns 4×4 grid of zeros
-```
-
-#### `initGame(size)`
-
-Initializes a new game with two random tiles on the board.
-
-```javascript
-initGame(4); // Returns { board, score: 0, status: 'playing', size: 4 }
-```
-
-#### `step(state, direction)`
-
-Computes the next game state from a direction ('left', 'right', 'up', 'down').
-
-- Returns the same state if move is invalid or doesn't change anything
-- Spawns a new tile after valid moves
-- Updates score based on merged tiles
-- Updates game status (playing/won/lost)
-
-```javascript
-step(currentState, "left"); // Returns new game state
-```
-
-#### `canMove(board)`
-
-Checks if any valid moves are possible (empty cells or adjacent equal tiles).
-
-```javascript
-canMove(board); // Returns true/false
-```
-
-### Algorithm Details
-
-**Tile Movement & Merging:**
-
-1. All four directions are normalized to a "move left" operation
-2. For right: reverse each row, move left, reverse back
-3. For up: transpose, move left, transpose back
-4. For down: transpose, reverse rows, move left, reverse, transpose back
-
-**Merge Logic:**
-
-- Tiles are merged only once per move
-- Each merge increments the score by the new tile's value
-- After merging, remaining tiles slide to fill gaps
-
-**Win/Loss Detection:**
-
-- Win: Any tile reaches 2048
-- Loss: Board is full AND no adjacent tiles have equal values
-
----
-
-## 🧩 Component Architecture
-
-### `App.jsx` - Root Component
-
-The main application component that orchestrates the entire game.
-
-**Responsibilities:**
-
-- Initializes game state via `useGame` hook
-- Composes Header, Board, and StatusOverlay components
-- Provides accessibility features (ARIA live regions)
-- Manages layout and styling
-
-**Key Props Flow:**
-
-```
-App
-├─→ Header (score, status, size, onRestart, onSize)
-├─→ Board (size, board)
-└─→ StatusOverlay (status, onRestart)
-```
-
----
-
-### `useGame.js` - Game State Hook
-
-Custom React hook that encapsulates all game state management and controls.
-
-**Features:**
-
-- Initializes game state with `initGame()`
-- Manages keyboard event listeners
-- Exposes `restart()`, `move()`, and `setSize()` functions
-- Handles state updates immutably
-
-**Return Value:**
-
-```javascript
-{
-  state: { board, score, status, size },
-  restart: (size?) => void,
-  move: (direction) => void,
-  setSize: (n) => void
-}
-```
-
-**Event Handling:**
-
-- Listens to `keydown` events globally
-- Maps Arrow keys and WASD to directions
-- Prevents default browser scrolling behavior
-
----
-
-### `game.js` - Pure Game Engine
-
-Framework-agnostic game logic with zero dependencies on React.
-
-**Design Principles:**
-
-- **Pure Functions:** No side effects, same input always produces same output
-- **Immutability:** Never mutates state, always returns new objects
-- **Functional Composition:** Complex operations built from simple functions
-- **Testability:** Easy to test without mocking or framework setup
-
-**Key Functions:**
-
-- `emptyBoard(n)` - Create empty grid
-- `initGame(size)` - Initialize new game
-- `step(state, direction)` - Execute move
-- `canMove(board)` - Check for valid moves
-- `slideAndMergeRow(row)` - Core merge algorithm
-
----
-
-### `Board.jsx` - Game Grid Component
-
-Renders the game board with colored tiles based on values.
-
-**Features:**
-
-- Dynamic grid sizing (4×4, 5×5, 6×6)
-- Responsive tile sizing and font scaling
-- Color-coded tiles based on value
-- Smooth transitions with CSS
-
-**Tile Color Scheme:**
-
-```javascript
-0     → Transparent (empty)
-2     → Light cream (#eee4da)
-4     → Cream (#ede0c8)
-8     → Orange (#f2b179)
-16    → Dark orange (#f59563)
-32    → Red-orange (#f67c5f)
-64    → Red (#f65e3b)
-128   → Gold (#edcf72)
-256   → Gold (#edcc61)
-512   → Gold (#edc850)
-1024  → Gold (#edc53f)
-2048+ → Victory gold (#edc22e)
-```
-
-**Responsive Sizing:**
-
-- 4×4 grid: `h-20` tiles, `text-2xl` font
-- 5×5 grid: `h-16` tiles, `text-xl` font
-- 6×6 grid: `h-14` tiles, `text-lg` font
-
----
-
-### `Header.jsx` - Control Panel Component
-
-Displays game information and controls at the top of the screen.
-
-**Features:**
-
-- Current score display with amber badge
-- Game status indicator (playing/won/lost)
-- Board size selector dropdown (4×4, 5×5, 6×6)
-- Restart button
-
-**Props:**
-
-```javascript
-{
-  score: number,        // Current game score
-  status: string,       // 'playing' | 'won' | 'lost'
-  size: number,         // Current board size
-  onRestart: function,  // Restart callback
-  onSize: function      // Size change callback
-}
-```
-
----
-
-### `StatusOverlay.jsx` - Game End Modal
-
-Modal overlay that appears when the game ends (win or loss).
-
-**Features:**
-
-- Semi-transparent backdrop
-- Contextual message based on game status
-- Emoji indicators (🎉 for win, 👾 for loss)
-- New game button
-- Accessibility: Proper ARIA labels
-
-**Display Logic:**
-
-- Hidden during active gameplay (`status === 'playing'`)
-- Shows "You won!" message when 2048 is reached
-- Shows "Game over" message when no moves remain
+- **`game.js`** - Pure functional logic with no React dependencies (easy to test and reuse)
+- **`useGame.js`** - Custom hook managing game state and keyboard controls
+- **`App.jsx`** - Main component orchestrating Header, Board, and StatusOverlay
+- **Components** - Isolated, reusable UI pieces with clear responsibilities
 
 ---
 
@@ -628,12 +423,11 @@ SOFTWARE.
 
 ---
 
-
 <div align="center">
 
 ### 🎮 [**Play Now →**](https://2048x-seven.vercel.app/)
 
-**[🐙 GitHub](https://github.com/aabhishekn/2048x)** • **[🌐 Live Demo](https://2048x-seven.vercel.app/)** 
+**[🐙 GitHub](https://github.com/aabhishekn/2048x)** • **[🌐 Live Demo](https://2048x-seven.vercel.app/)**
 
 ---
 
