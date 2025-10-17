@@ -1,6 +1,4 @@
-// src/components/Board.jsx
-
-// map value -> tailwind classes
+// Returns Tailwind classes based on tile value
 const tileClass = (v) => {
   if (v === 0) return "bg-[#cdc1b4] text-transparent";
   if (v === 2) return "bg-[#eee4da] text-slate-800";
@@ -21,7 +19,7 @@ export default function Board({ size = 4, board = null }) {
   const n = size;
   const vals = board ?? Array.from({ length: n * n }, () => 0);
 
-  // adapt tile height/font a little by size
+  // Responsive tile sizing based on board size
   const cellH = n <= 4 ? "h-20" : n === 5 ? "h-16" : "h-14";
   const font = n <= 4 ? "text-2xl" : n === 5 ? "text-xl" : "text-lg";
 

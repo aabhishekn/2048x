@@ -1,5 +1,11 @@
-// src/components/StatusOverlay.jsx
-export default function StatusOverlay({ status = "playing", onRestart = () => {} }) {
+/**
+ * Overlay component that displays game end status (won/lost)
+ * Shows only when game is not in playing state
+ */
+export default function StatusOverlay({
+  status = "playing",
+  onRestart = () => {},
+}) {
   if (status === "playing") return null;
 
   const label = status === "won" ? "You won!" : "No more moves";

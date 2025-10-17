@@ -1,4 +1,3 @@
-// src/lib/game.js
 // Pure, immutable 2048 engine (no React-specific code)
 
 /** Create an n×n array filled with 0s. */

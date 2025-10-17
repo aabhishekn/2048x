@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { initGame, step } from "../lib/game";
 
 /**
- * useGame: bridges React to our pure engine.
- * - holds the immutable game state
- * - exposes restart(), setSize(), and keyboard-driven moves
+ * Custom hook for managing 2048 game state and controls
+ * Handles game initialization, moves, keyboard input, and board size changes
  */
 export const useGame = (initialSize = 4) => {
   // initialize once with a fresh game
@@ -19,7 +18,7 @@ export const useGame = (initialSize = 4) => {
   // change board size and start a new game
   const setSize = (n) => setState(initGame(n));
 
-  // keyboard controls: Arrow keys or WASD
+  // Handle keyboard controls (Arrow keys and WASD)
   useEffect(() => {
     const onKey = (e) => {
       const map = {
