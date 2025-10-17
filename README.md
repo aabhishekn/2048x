@@ -590,55 +590,6 @@ const status = nb.flat().includes(4096)
 
 ---
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-### How to Contribute
-
-1. **Fork the repository**
-
-   ```bash
-   # Click the 'Fork' button on GitHub
-   ```
-
-2. **Clone your fork**
-
-   ```bash
-   git clone https://github.com/aabhishekn/2048x.git
-   cd 2048x
-   ```
-
-3. **Create a feature branch**
-
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-
-4. **Make your changes**
-
-   - Write clean, readable code
-   - Follow existing code style
-   - Add comments for complex logic
-   - Test your changes thoroughly
-
-5. **Commit your changes**
-
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-
-6. **Push to your branch**
-
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-
-7. **Open a Pull Request**
-   - Go to the original repository
-   - Click "New Pull Request"
-   - Describe your changes
-
 ### Code Style Guidelines
 
 - Use functional components and hooks
@@ -646,23 +597,6 @@ Contributions, issues, and feature requests are welcome!
 - Keep functions small and focused
 - Write descriptive variable names
 - Add JSDoc comments for complex functions
-
----
-
-## 🔮 Future Enhancements
-
-Ideas for future development:
-
-- [ ] **Undo/Redo Functionality** - Allow players to undo moves
-- [ ] **Local High Scores** - Save best scores using localStorage
-- [ ] **Animated Tile Merges** - Smooth animations for merging tiles
-- [ ] **Touch/Swipe Controls** - Mobile gesture support
-- [ ] **Game Themes** - Dark mode and custom color themes
-- [ ] **Sound Effects** - Audio feedback for moves and merges
-- [ ] **Leaderboard** - Global high score tracking
-- [ ] **AI Solver** - Auto-play mode with AI algorithm
-- [ ] **Game Statistics** - Track moves, time played, etc.
-- [ ] **Share Results** - Share scores on social media
 
 ---
 
@@ -696,39 +630,12 @@ SOFTWARE.
 
 ---
 
-## 👨‍💻 Author
-
-**Abhishek N**
-
-- 🐙 GitHub: [@aabhishekn](https://github.com/aabhishekn)
-- 🌐 Portfolio: Coming soon
-- 📧 Email: Contact via GitHub
-
----
-
-## 🙏 Acknowledgments
-
-- **Gabriele Cirulli** - Creator of the [original 2048 game](https://github.com/gabrielecirulli/2048)
-- **React Team** - For the incredible React framework
-- **Evan You & Vite Team** - For the blazing-fast build tool
-- **Tailwind Labs** - For the utility-first CSS framework
-- **Vercel** - For seamless deployment and hosting
-
----
-
-## 📞 Support
-
-- 🐛 **Found a bug?** [Open an issue](https://github.com/aabhishekn/2048x/issues)
-- 💡 **Have an idea?** [Request a feature](https://github.com/aabhishekn/2048x/issues)
-- ⭐ **Enjoying the game?** Give it a star on GitHub!
-
----
 
 <div align="center">
 
 ### 🎮 [**Play Now →**](https://2048x-seven.vercel.app/)
 
-**[🐙 GitHub](https://github.com/aabhishekn/2048x)** • **[🌐 Live Demo](https://2048x-seven.vercel.app/)** • **[🐛 Report Bug](https://github.com/aabhishekn/2048x/issues)** • **[💡 Request Feature](https://github.com/aabhishekn/2048x/issues)**
+**[🐙 GitHub](https://github.com/aabhishekn/2048x)** • **[🌐 Live Demo](https://2048x-seven.vercel.app/)** 
 
 ---
 
