@@ -376,10 +376,4 @@ SOFTWARE.
 
 **[🐙 GitHub](https://github.com/aabhishekn/2048x)** • **[🌐 Live Demo](https://2048x-seven.vercel.app/)**
 
----
-
-Made with ❤️ using React, Vite, and Tailwind CSS
-
-⭐ **Star this repo if you found it helpful!** ⭐
-
 </div>
